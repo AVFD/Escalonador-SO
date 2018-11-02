@@ -20,9 +20,9 @@ import processo.TabelaDeProcessos;
  */
 public class lerAlgoritmos {
 
-    private final String file1 = "escalonar1.txt";
+    private final String file1 = "/home/augusto/Documents/SO/escalonador/Escalonador-SO/testeSrj.txt";
 
-    private TabelaDeProcessos lerArquivo() {
+    public TabelaDeProcessos lerArquivo() {
         TabelaDeProcessos tabelaDeProcessos = new TabelaDeProcessos();
         try {
             FileReader arq = new FileReader(file1);
@@ -30,7 +30,7 @@ public class lerAlgoritmos {
             String line = "";
             String parts[];
 
-            while (!(line = lerArq.readLine()).equals("") && line != null) {
+            while (line != null && !(line = lerArq.readLine()).equals("")) {
                 BCP novoProcesso = new BCP();
 
                 parts = line.split(" ");
@@ -45,9 +45,10 @@ public class lerAlgoritmos {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
+            System.out.println("Na classe LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
             Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            System.err.println("ERROU");
             Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -5,6 +5,9 @@
  */
 package projeto_soa;
 
+import leituraArquivo.lerAlgoritmos;
+import processo.TabelaDeProcessos;
+
 /**
  *
  * @author guilherme
@@ -15,7 +18,14 @@ public class Projeto_SOA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        lerAlgoritmos leituraArquivo = new lerAlgoritmos();
+        TabelaDeProcessos tp;
+        //tp = new TabelaDeProcessos();
+        
+        tp = leituraArquivo.lerArquivo();
+        
+        System.out.println("-> " + tp.getTabelaDeProcesso());
+        
     }
     
 }

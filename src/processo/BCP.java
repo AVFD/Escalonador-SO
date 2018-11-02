@@ -18,6 +18,9 @@ public class BCP {
     private int tempoChegada;
     private int tempoTotal;
     private LinkedList<Integer> listaIO;
+    public BCP(){
+        this.listaIO = new LinkedList<>();
+    }
 
     public int getId() {
         return id;

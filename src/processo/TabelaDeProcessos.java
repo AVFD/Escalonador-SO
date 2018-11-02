@@ -13,6 +13,10 @@ import java.util.LinkedList;
  */
 public class TabelaDeProcessos {
     LinkedList<BCP> tabelaDeProcesso;
+    
+    public TabelaDeProcessos (){
+        this.tabelaDeProcesso = new LinkedList<>();
+    }
 
     public LinkedList<BCP> getTabelaDeProcesso() {
         return tabelaDeProcesso;
