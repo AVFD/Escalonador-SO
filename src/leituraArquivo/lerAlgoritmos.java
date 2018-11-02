@@ -5,10 +5,43 @@
  */
 package leituraArquivo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import processo.BCP;
+
 /**
  *
  * @author guilherme
  */
 public class lerAlgoritmos {
-    
+
+    private final String file1 = "escalonar1.txt";
+
+    private BCP lerArquivo() {
+        try {
+            FileReader arq = new FileReader(file1);
+            BufferedReader lerArq = new BufferedReader(arq);
+            String line = "";
+            String parts[];
+
+            while (!(line = lerArq.readLine()).equals("") && line != null) {
+                BCP novoProcesso = new BCP();
+
+                parts = line.split(" ");
+                novoProcesso.setId(Integer.valueOf(parts[0]));
+            }
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
+            Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return novoProcesso;
+    }
 }
