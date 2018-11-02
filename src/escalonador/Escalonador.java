@@ -16,4 +16,6 @@ public interface Escalonador {
     
     public void escalonar();
     
+    public void ordenar();
+    
 }

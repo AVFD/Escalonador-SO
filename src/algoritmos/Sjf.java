@@ -13,12 +13,17 @@ import processo.BCP;
  * @author guilherme
  */
 public class Sjf implements escalonador.Escalonador{
-    private BCP processo = new BCP();
+    private BCP processo;
     private LinkedList<BCP> listaProcessos;
     private LinkedList<Integer> listaOrdemProcessos;
     
     @Override
     public void escalonar(){
+        
+    }
+    
+    @Override
+    public void ordenar(){
         
     }
     
