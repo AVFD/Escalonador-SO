@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto_soa;
+package processo;
 
 import java.util.LinkedList;
 
@@ -17,6 +17,5 @@ public class BCP {
     private String estado;
     private int tempo;
     private LinkedList<Integer> listaIO;
-    goias baitola
     
 }
