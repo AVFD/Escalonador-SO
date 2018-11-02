@@ -13,7 +13,10 @@ import processo.BCP;
  * @author guilherme
  */
 public class Sjf {
-    BCP processo = new BCP();
-    LinkedList<BCP> listaProcessos;
+    private BCP processo = new BCP();
+    private LinkedList<BCP> listaProcessos;
+    private LinkedList<Integer> listaOrdemProcessos;
+    
+    
     
 }
