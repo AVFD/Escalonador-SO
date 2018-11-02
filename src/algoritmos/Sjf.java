@@ -5,10 +5,15 @@
  */
 package algoritmos;
 
+import java.util.LinkedList;
+import processo.BCP;
+
 /**
  *
  * @author guilherme
  */
 public class Sjf {
+    BCP processo = new BCP();
+    LinkedList<BCP> listaProcessos;
     
 }
