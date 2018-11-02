@@ -35,8 +35,12 @@ public class lerAlgoritmos {
 
                 parts = line.split(" ");
                 novoProcesso.setId(Integer.valueOf(parts[0]));
-                novoProcesso.setTempo(Integer.valueOf(parts[1]));
+                novoProcesso.setTempoTotal(Integer.valueOf(parts[1]));
                 novoProcesso.setPrioridade(Integer.valueOf(parts[2]));
+                novoProcesso.setTempoChegada(Integer.valueOf(parts[3]));
+                for (int i = 4; i < parts.length; i++) {
+                    novoProcesso.getListaIO().add(Integer.valueOf(parts[i]));
+                }
                 tabelaDeProcessos.getTabelaDeProcesso().add(novoProcesso);
             }
 

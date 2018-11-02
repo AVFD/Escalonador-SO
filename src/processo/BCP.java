@@ -15,7 +15,8 @@ public class BCP {
     private int id;
     private int prioridade;
     private String estado;
-    private int tempo;
+    private int tempoChegada;
+    private int tempoTotal;
     private LinkedList<Integer> listaIO;
 
     public int getId() {
@@ -42,12 +43,19 @@ public class BCP {
         this.estado = estado;
     }
 
-    public int getTempo() {
-        return tempo;
+    public int getTempoChegada() {
+        return tempoChegada;
     }
 
-    public void setTempo(int tempo) {
-        this.tempo = tempo;
+    public void setTempoChegada(int tempo) {
+        this.tempoChegada = tempo;
+    }
+    public int getTempoTotal() {
+        return tempoTotal;
+    }
+
+    public void setTempoTotal(int tempo) {
+        this.tempoTotal = tempo;
     }
 
     public LinkedList<Integer> getListaIO() {
