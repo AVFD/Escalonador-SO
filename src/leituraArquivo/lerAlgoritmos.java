@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import processo.BCP;
+import processo.TabelaDeProcessos;
 
 /**
  *
@@ -21,7 +22,8 @@ public class lerAlgoritmos {
 
     private final String file1 = "escalonar1.txt";
 
-    private BCP lerArquivo() {
+    private TabelaDeProcessos lerArquivo() {
+        TabelaDeProcessos tabelaDeProcessos = new TabelaDeProcessos();
         try {
             FileReader arq = new FileReader(file1);
             BufferedReader lerArq = new BufferedReader(arq);
@@ -33,6 +35,8 @@ public class lerAlgoritmos {
 
                 parts = line.split(" ");
                 novoProcesso.setId(Integer.valueOf(parts[0]));
+                
+                tabelaDeProcessos.getTabelaDeProcesso().add(novoProcesso);
             }
 
         } catch (FileNotFoundException ex) {
@@ -42,6 +46,6 @@ public class lerAlgoritmos {
             Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return novoProcesso;
+        return tabelaDeProcessos;
     }
 }
