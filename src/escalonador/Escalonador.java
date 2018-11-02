@@ -12,23 +12,8 @@ import processo.BCP;
  *
  * @author augusto
  */
-public class Escalonador {
-    private LinkedList<BCP> lista;
+public interface Escalonador {
     
-    public Escalonador(){
-        
-    }
+    public void escalonar();
     
-    public void escalonadorSJF(){
-        LinkedList<Integer> ordemLista;
-        
-    }
-    
-    public void escalonadorPRIO(){
-        
-    }
-    
-    public void escalonadorRR(){
-        
-    }
 }
