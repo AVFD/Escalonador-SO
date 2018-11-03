@@ -15,7 +15,6 @@ import processo.TabelaDeProcessos;
  * @author guilherme
  */
 public class Sjf extends escalonador.Escalonador{
-    private BCP processo;
     private LinkedList<BCP> listaProcessos;
     private int[] listaOrdemProcessos;
     
