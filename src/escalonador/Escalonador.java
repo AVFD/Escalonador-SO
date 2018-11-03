@@ -14,6 +14,7 @@ import processo.BCP;
  */
 public abstract class Escalonador {
     LinkedList<String> listaBloqueado;
+    
     abstract public void escalonar();
     
     abstract public void ordenar();

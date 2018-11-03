@@ -18,7 +18,7 @@ import processo.TabelaDeProcessos;
  *
  * @author guilherme
  */
-public class lerAlgoritmos {
+public class LerArquivo {
 
     private final String file1 = "/home/augusto/Documents/SO/escalonador/Escalonador-SO/testeSrj.txt";
 
@@ -48,9 +48,9 @@ public class lerAlgoritmos {
 
         } catch (FileNotFoundException ex) {
             System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
-            Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return tabelaDeProcessos;

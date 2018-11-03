@@ -6,16 +6,26 @@
 package processo;
 
 import java.util.LinkedList;
+import leituraArquivo.LerArquivo;
 
 /**
  *
  * @author guilherme
  */
 public class TabelaDeProcessos {
+
+    public static TabelaDeProcessos tp = null;
     LinkedList<BCP> tabelaDeProcesso;
-    
-    public TabelaDeProcessos (){
+
+    public TabelaDeProcessos() {
         this.tabelaDeProcesso = new LinkedList<>();
+    }
+
+    public static TabelaDeProcessos getInstance() {
+        if (tp == null) {
+            tp = new LerArquivo().lerArquivo();
+        }
+        return tp;
     }
 
     public LinkedList<BCP> getTabelaDeProcesso() {
@@ -25,5 +35,5 @@ public class TabelaDeProcessos {
     public void setTabelaDeProcesso(LinkedList<BCP> tabelaDeProcesso) {
         this.tabelaDeProcesso = tabelaDeProcesso;
     }
-    
+
 }
