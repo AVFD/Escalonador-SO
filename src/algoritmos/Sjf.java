@@ -6,7 +6,6 @@
 package algoritmos;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import processo.BCP;
 import processo.TabelaDeProcessos;
@@ -27,16 +26,19 @@ public class Sjf extends escalonador.Escalonador{
     @Override
     public void escalonar(){
         int tamanhoLista = listaProcessos.size();
-        this.listaOrdemProcessos = new int[tamanhoLista];
+        LinkedList<BCP> listaAuxiliar = new LinkedList<>();
         
         for (int j = 0; j < tamanhoLista; j++){
             for (int k = 0; k < tamanhoLista; k++){
+
                 if (this.listaOrdemProcessos[j] == this.listaProcessos.get(k).getTempoTotal()){
-                    System.out.println("-> " + listaProcessos.get(k).getId());
-                    listaProcessos.remove(k);                    
+                    listaAuxiliar.add(this.listaProcessos.get(k));
                 }
             }
         }
+        
+        this.listaProcessos = (LinkedList<BCP>) listaAuxiliar.clone();
+        
     }
     
     @Override

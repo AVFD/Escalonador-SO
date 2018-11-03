@@ -20,14 +20,13 @@ public class Projeto_SOA {
     public static void main(String[] args) {        
         
         Sjf sjf = new Sjf();
+        sjf.ordenar();
         sjf.escalonar();
         
         for (BCP p : sjf.getListaProcessos()){
             p.printProcesso();
             System.out.println("-------");
         }
-        
-        
         
     }
     
