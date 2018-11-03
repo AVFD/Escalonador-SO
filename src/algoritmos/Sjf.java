@@ -14,7 +14,7 @@ import processo.BCP;
  *
  * @author guilherme
  */
-public class Sjf implements escalonador.Escalonador{
+public class Sjf extends escalonador.Escalonador{
     private BCP processo;
     private LinkedList<BCP> listaProcessos;
     private int[] listaOrdemProcessos;
