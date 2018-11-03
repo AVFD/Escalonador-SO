@@ -6,6 +6,7 @@
 package projeto_soa;
 
 import leituraArquivo.lerAlgoritmos;
+import processo.BCP;
 import processo.TabelaDeProcessos;
 
 /**
@@ -25,6 +26,11 @@ public class Projeto_SOA {
         tp = leituraArquivo.lerArquivo();
         
         System.out.println("-> " + tp.getTabelaDeProcesso());
+        
+        for (BCP p : tp.getTabelaDeProcesso()){
+            p.printProcesso();
+            System.out.println("-------");
+        }
         
     }
     

@@ -30,8 +30,10 @@ public class lerAlgoritmos {
             String line = "";
             String parts[];
 
-            while (line != null && !(line = lerArq.readLine()).equals("")) {
+            while ((line = lerArq.readLine()) != null) {
                 BCP novoProcesso = new BCP();
+                
+                System.out.println("--> " + line);
 
                 parts = line.split(" ");
                 novoProcesso.setId(Integer.valueOf(parts[0]));
@@ -45,10 +47,9 @@ public class lerAlgoritmos {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Na classe LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
+            System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
             Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            System.err.println("ERROU");
             Logger.getLogger(lerAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -69,4 +69,10 @@ public class BCP {
         this.listaIO = listaIO;
     }
     
+    public void printProcesso(){
+        System.out.println(": " + this.getId());
+        System.out.println(": " + this.getPrioridade());
+        System.out.println(": " + this.getTempoChegada());
+    }
+    
 }
