@@ -5,9 +5,8 @@
  */
 package projeto_soa;
 
-import leituraArquivo.lerAlgoritmos;
+import algoritmos.Sjf;
 import processo.BCP;
-import processo.TabelaDeProcessos;
 
 /**
  *
@@ -18,19 +17,17 @@ public class Projeto_SOA {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        lerAlgoritmos leituraArquivo = new lerAlgoritmos();
-        TabelaDeProcessos tp;
-        //tp = new TabelaDeProcessos();
+    public static void main(String[] args) {        
         
-        tp = leituraArquivo.lerArquivo();
+        Sjf sjf = new Sjf();
+        sjf.escalonar();
         
-        System.out.println("-> " + tp.getTabelaDeProcesso());
-        
-        for (BCP p : tp.getTabelaDeProcesso()){
+        for (BCP p : sjf.getListaProcessos()){
             p.printProcesso();
             System.out.println("-------");
         }
+        
+        
         
     }
     

@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import processo.BCP;
+import processo.TabelaDeProcessos;
 
 /**
  *
@@ -19,9 +20,14 @@ public class Sjf extends escalonador.Escalonador{
     private LinkedList<BCP> listaProcessos;
     private int[] listaOrdemProcessos;
     
+    public Sjf(){
+        this.listaProcessos = TabelaDeProcessos.getInstance().getTabelaDeProcesso();
+    }
+    
     @Override
     public void escalonar(){
         int tamanhoLista = listaProcessos.size();
+        this.listaOrdemProcessos = new int[tamanhoLista];
         
         for (int j = 0; j < tamanhoLista; j++){
             for (int k = 0; k < tamanhoLista; k++){
@@ -46,6 +52,14 @@ public class Sjf extends escalonador.Escalonador{
         Arrays.sort(baseParaPrdenacao);
         
         this.listaOrdemProcessos = baseParaPrdenacao.clone();
+    }
+
+    public LinkedList<BCP> getListaProcessos() {
+        return listaProcessos;
+    }
+
+    public void setListaProcessos(LinkedList<BCP> listaProcessos) {
+        this.listaProcessos = listaProcessos;
     }
     
 }

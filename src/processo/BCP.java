@@ -73,6 +73,7 @@ public class BCP {
         System.out.println(": " + this.getId());
         System.out.println(": " + this.getPrioridade());
         System.out.println(": " + this.getTempoChegada());
+        System.out.println(": " + this.getTempoTotal());
     }
     
 }
