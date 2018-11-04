@@ -20,16 +20,16 @@ public class Sjf extends cpu.Escalonador {
         int menorTempo;
 
         retornarProcessosAptos(Processador.ciclo);
-        
-        if (this.getListaAptos().isEmpty()){
+
+        if (this.getListaAptos().isEmpty()) {
             return null;
         }
-        
+
         menorTempo = this.getListaAptos().get(0).getTempoTotal();
         bcp.copiaProcesso(this.getListaAptos().get(0));
         for (BCP p : this.getListaAptos()) {
             for (BCP p1 : this.getListaAptos()) {
-                
+
                 if (menorTempo > p1.getTempoTotal()) {
                     menorTempo = p1.getTempoTotal();
                     bcp.copiaProcesso(p1);
@@ -41,13 +41,8 @@ public class Sjf extends cpu.Escalonador {
     }
 
     @Override
-    public void ordenar() {
-
-    }
-
-    @Override
     public void retornarProcessosAptos(int ciclo) {
-        
+
         for (BCP p : this.getListaProcessos()) {
             if (p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
                 this.getListaAptos().add(p);
@@ -55,30 +50,21 @@ public class Sjf extends cpu.Escalonador {
         }
 
     }
-    @Override
-    public void decrementarProcessos(int qtdCiclo){
-        for (BCP p : this.getListaProcessos()){
-            p.setTempoTotal(p.getTempoTotal()-qtdCiclo);
-            if (p.getTempoTotal() <= 0){
-                this.removeById(p.getId(), this.getListaProcessos());
-            }
-        }
-    }
 
     @Override
     public int returnIndexProcessoNaLista(int id) {
-        for(BCP p : this.getListaProcessos()){
-            if(p.getId() == id){
+        for (BCP p : this.getListaProcessos()) {
+            if (p.getId() == id) {
                 return getListaProcessos().indexOf(p);
             }
         }
         return -1;
     }
-    
-    private boolean processoJaApto (int indiceProcesso){
+
+    private boolean processoJaApto(int indiceProcesso) {
         boolean tem = false;
-        for (BCP p : this.getListaAptos()){
-            if (p.getId() == indiceProcesso){
+        for (BCP p : this.getListaAptos()) {
+            if (p.getId() == indiceProcesso) {
                 tem = true;
             }
         }
