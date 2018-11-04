@@ -13,7 +13,7 @@ import processo.TabelaDeProcessos;
  *
  * @author augusto
  */
-public class RoundRobin extends escalonador.Escalonador{
+public class RoundRobin extends cpu.Escalonador{
     private LinkedList<BCP> listaProcessos;
     private int[] listaOrdemProcessos;
     

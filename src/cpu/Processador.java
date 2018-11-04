@@ -5,9 +5,8 @@
  */
 package cpu;
 
-import algoritmos.RoundRobin;
-import algoritmos.Sjf;
 import java.util.LinkedList;
+import processo.BCP;
 
 /**
  *
@@ -16,9 +15,10 @@ import java.util.LinkedList;
 public class Processador {
 
     private LinkedList<Escalonador> listaAlg;
-    
+    private LinkedList<BCP> ordemExecutados;
     public Processador(LinkedList<Escalonador> listaAlg){
         this.listaAlg = listaAlg;
+        this.ordemExecutados = new LinkedList<>();
     }
     public void processar() {
         int size = listaAlg.size();
