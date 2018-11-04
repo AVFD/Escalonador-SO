@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package escalonador;
+package cpu;
 
 import java.util.LinkedList;
 import processo.BCP;
