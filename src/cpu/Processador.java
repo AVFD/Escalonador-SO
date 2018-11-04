@@ -15,7 +15,7 @@ import processo.BCP;
 public class Processador {
 
     private LinkedList<Escalonador> listaAlg;
-    private LinkedList<BCP> ordemExecutados;
+    private LinkedList<LinkedList<BCP>> ordemExecutados;
     public static int ciclo = 0;
     private int quantum = 1;
 
@@ -28,10 +28,11 @@ public class Processador {
         int size = listaAlg.size();
         for (int i = 0; i < size; i++) {
             Escalonador atual = listaAlg.get(i);
+            LinkedList<BCP> listaAtualExecutados = new LinkedList<>();
             do {
                 BCP p = atual.escalonar();
                 if (p != null) {
-                    this.ordemExecutados.add(p);
+                    listaAtualExecutados.add(p);
                     if ((p.getTempoTotal() - quantum) < 0) {
                         ciclo += p.getTempoTotal();
                     } else {
@@ -48,6 +49,7 @@ public class Processador {
                     ciclo++;
                 }
             } while (!atual.getListaProcessos().isEmpty());
+            ordemExecutados.add(listaAtualExecutados);
         }
     }
 
@@ -59,11 +61,11 @@ public class Processador {
         this.listaAlg = listaAlg;
     }
 
-    public LinkedList<BCP> getOrdemExecutados() {
+    public LinkedList<LinkedList<BCP>> getOrdemExecutados() {
         return ordemExecutados;
     }
 
-    public void setOrdemExecutados(LinkedList<BCP> ordemExecutados) {
+    public void setOrdemExecutados(LinkedList<LinkedList<BCP>> ordemExecutados) {
         this.ordemExecutados = ordemExecutados;
     }
 

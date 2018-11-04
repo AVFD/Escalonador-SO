@@ -20,23 +20,25 @@ public class Projeto_SOA {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
-        
+    public static void main(String[] args) {
+
         Sjf sjf = new Sjf();
-        
+
         LinkedList<Escalonador> listaAlg = new LinkedList<>();
-        
+
         listaAlg.add(sjf);
-        
+
         Processador p = new Processador(listaAlg);
 
         p.processar();
-        
-        for (BCP processo : p.getOrdemExecutados()){
-            processo.printProcesso();
-            //System.out.println("-------");
+
+        for (LinkedList<BCP> lk : p.getOrdemExecutados()) {
+            for (BCP processo : lk) {
+                processo.printProcesso();
+                //System.out.println("-------");
+            }
         }
-        
+
     }
-    
+
 }
