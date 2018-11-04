@@ -6,6 +6,9 @@
 package projeto_soa;
 
 import algoritmos.Sjf;
+import cpu.Escalonador;
+import cpu.Processador;
+import java.util.LinkedList;
 import processo.BCP;
 
 /**
@@ -20,18 +23,18 @@ public class Projeto_SOA {
     public static void main(String[] args) {        
         
         Sjf sjf = new Sjf();
-        sjf.ordenar();
-        //sjf.escalonar();
         
-        //sjf.ordenaPorTempoChegada();
-        //sjf.arrumarListaOrdenadaDosProcessos();
+        LinkedList<Escalonador> listaAlg = new LinkedList<>();
         
-        //sjf.escalonador();
+        listaAlg.add(sjf);
         
+        Processador p = new Processador(listaAlg);
+
+        p.processar();
         
-        for (BCP p : sjf.getListaProcessos()){
-            p.printProcesso();
-            System.out.println("-------");
+        for (BCP processo : p.getOrdemExecutados()){
+            processo.printProcesso();
+            //System.out.println("-------");
         }
         
     }

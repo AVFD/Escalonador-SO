@@ -5,185 +5,83 @@
  */
 package algoritmos;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import cpu.Processador;
 import processo.BCP;
-import processo.TabelaDeProcessos;
 
 /**
  *
  * @author guilherme
  */
-public class Sjf extends cpu.Escalonador{
-    private LinkedList<BCP> listaProcessos;
-    private int[] listaOrdemProcessos;
-    private int[] listaOrdemProcessosTempoChegada;
-    private LinkedList<BCP> listaAptos = new LinkedList<>();
-    private LinkedList<BCP> listaBloqueados = new LinkedList<>();
-    
-    public Sjf(){
-        this.listaProcessos = TabelaDeProcessos.getInstance().getTabelaDeProcesso();
-    }
-    
+public class Sjf extends cpu.Escalonador {
+
     @Override
-    public BCP escalonar(){
-        BCP processoRetornar = new BCP();
-        int tamanhoLista = listaProcessos.size();
-        LinkedList<BCP> listaAuxiliar = new LinkedList<>();
-        
-        for (int j = 0; j < tamanhoLista; j++){
-            for (int k = 0; k < tamanhoLista; k++){
+    public BCP escalonar() {
+        BCP bcp = new BCP();
+        int menorTempo;
 
-                if (this.listaOrdemProcessos[j] == this.listaProcessos.get(k).getTempoTotal()){
-                    listaAuxiliar.add(this.listaProcessos.get(k));
+        retornarProcessosAptos(Processador.ciclo);
+        
+        if (this.getListaAptos().isEmpty()){
+            return null;
+        }
+        
+        menorTempo = this.getListaAptos().get(0).getTempoTotal();
+        bcp.copiaProcesso(this.getListaAptos().get(0));
+        for (BCP p : this.getListaAptos()) {
+            for (BCP p1 : this.getListaAptos()) {
+                
+                if (menorTempo > p1.getTempoTotal()) {
+                    menorTempo = p1.getTempoTotal();
+                    bcp.copiaProcesso(p1);
+
                 }
             }
         }
-        
-        this.listaProcessos = (LinkedList<BCP>) listaAuxiliar.clone();
-        return processoRetornar;
+        return bcp;
     }
-    
+
     @Override
-    public void ordenar(){
-        int[] baseParaPrdenacao;
-        int primeiroProcesso;
-        BCP processoTemp = null;
-        LinkedList<BCP> listaAuxiliar = new LinkedList<>();
-        
-        primeiroProcesso = this.listaProcessos.get(0).getTempoChegada();
-        
-        for (int i = 0; i < this.listaProcessos.size(); i++){
-            if (primeiroProcesso > this.listaProcessos.get(i).getTempoChegada()){
-                primeiroProcesso = this.listaProcessos.get(i).getTempoChegada();
-            }
-        }
-        
-        listaAuxiliar = (LinkedList<BCP>) this.listaProcessos.clone();
-        
-        System.out.println("---->>>" + listaAuxiliar.size());
-        
-        baseParaPrdenacao = new int[this.listaProcessos.size()];
-        
-        for (int i = 0; i < this.listaProcessos.size(); i++){
-            baseParaPrdenacao[i] = this.listaProcessos.get(i).getTempoTotal();
-            }
-        
-        Arrays.sort(baseParaPrdenacao);
-        
-        for (int j = 0; j<baseParaPrdenacao.length; j++){
-            for (int i=0; i<this.listaProcessos.size(); i++){
-                if (this.listaProcessos.get(i).getTempoTotal() == baseParaPrdenacao[j]){
-                    listaAuxiliar.add(this.listaProcessos.get(i));
-                    break;
-                }
-            }
-        }
-        
-        for (int i = 0; i < listaAuxiliar.size(); i++){
-            if (listaAuxiliar.get(i).getTempoChegada() == primeiroProcesso){
-                processoTemp = listaAuxiliar.get(i);
-                listaAuxiliar.remove(listaAuxiliar.get(i));
-            }
-            else {
-                
-            }
-        }        
-        
-        listaAuxiliar.addFirst(processoTemp);
-        
-        
-        this.listaProcessos = (LinkedList<BCP>) listaAuxiliar.clone();
-        /*
-        baseParaPrdenacao = new int[this.listaProcessos.size()];
-        
-        for (int i = 0; i < this.listaProcessos.size(); i++){
-            baseParaPrdenacao[i] = this.listaProcessos.get(i).getTempoTotal();
-            }
-        
-        Arrays.sort(baseParaPrdenacao);
-        
-        this.listaOrdemProcessos = baseParaPrdenacao.clone();*/
+    public void ordenar() {
+
     }
 
-    public LinkedList<BCP> getListaProcessos() {
-        return listaProcessos;
+    @Override
+    public void retornarProcessosAptos(int ciclo) {
+        
+        for (BCP p : this.getListaProcessos()) {
+            if (p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
+                this.getListaAptos().add(p);
+            }
+        }
+
+    }
+    @Override
+    public void decrementarProcessos(int qtdCiclo){
+        for (BCP p : this.getListaProcessos()){
+            p.setTempoTotal(p.getTempoTotal()-qtdCiclo);
+            if (p.getTempoTotal() <= 0){
+                this.removeById(p.getId(), this.getListaProcessos());
+            }
+        }
     }
 
-    public void setListaProcessos(LinkedList<BCP> listaProcessos) {
-        this.listaProcessos = listaProcessos;
-    }
-    
-    public void escalonador (){
-        BCP processoExecutando = null;
-        String resultadoEscalonador = "";
-        
-        int ciclo = 0;
-        
-        do {
-            processoExecutando = controleFilas(ciclo, processoExecutando);
-            
-            resultadoEscalonador += processoExecutando.getId();
-            
-            ciclo++;
-            
-        } while (listaAptos.size() > 0 && listaBloqueados.size() > 0);
-        
-        System.out.println("-> " + resultadoEscalonador);
-    }
-    
-    public BCP controleFilas (int ciclo, BCP processoExecutando){
-        BCP processoAtual = processoExecutando;
-        int indiceProcessoNaLista;
-                
-        if (ciclo == this.listaOrdemProcessosTempoChegada[ciclo]){
-            
-            if (ciclo == 0){
-                this.listaAptos.add(this.listaProcessos.get(0));
-                processoAtual = this.listaProcessos.get(0);
-                indiceProcessoNaLista = this.listaProcessos.indexOf(processoAtual);
-                System.out.println("<<<: " + indiceProcessoNaLista);
+    @Override
+    public int returnIndexProcessoNaLista(int id) {
+        for(BCP p : this.getListaProcessos()){
+            if(p.getId() == id){
+                return getListaProcessos().indexOf(p);
             }
-            else {//quando não se é o primeiro processo.
-                
+        }
+        return -1;
+    }
+    
+    private boolean processoJaApto (int indiceProcesso){
+        boolean tem = false;
+        for (BCP p : this.getListaAptos()){
+            if (p.getId() == indiceProcesso){
+                tem = true;
             }
-            
         }
-        else {
-            processoAtual = new BCP();
-            processoAtual.setId(-1);
-        }
-        
-        return processoAtual;
-        
+        return tem;
     }
-    
-    public void ordenaPorTempoChegada(){
-        int[] vetorOrdenadoTempoChegada = new int[this.listaProcessos.size()];
-
-        for (int i = 0; i < this.listaProcessos.size(); i++){
-            vetorOrdenadoTempoChegada[i] = this.listaProcessos.get(i).getTempoChegada();
-        }
-        
-        Arrays.sort(vetorOrdenadoTempoChegada);
-        
-        this.listaOrdemProcessosTempoChegada = vetorOrdenadoTempoChegada.clone();
-        
-        System.out.println("--> " + Arrays.toString(this.listaOrdemProcessosTempoChegada));
-    }
-    
-    public void arrumarListaOrdenadaDosProcessos(){
-        LinkedList<BCP> listaAuxiliar = new LinkedList<>();
-
-            for (int j = 0; j < this.listaProcessos.size(); j++){
-                for (int k = 0; k < this.listaProcessos.size(); k++){
-                    if (this.listaOrdemProcessosTempoChegada[j] == this.listaProcessos.get(k).getTempoChegada()){
-                        listaAuxiliar.add(this.listaProcessos.get(k));
-                    }
-                }
-            }
-        
-        this.listaProcessos = (LinkedList<BCP>) listaAuxiliar.clone();
-    }
-    
 }

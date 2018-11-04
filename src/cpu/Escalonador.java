@@ -7,6 +7,7 @@ package cpu;
 
 import java.util.LinkedList;
 import processo.BCP;
+import processo.TabelaDeProcessos;
 
 /**
  *
@@ -15,10 +16,51 @@ import processo.BCP;
 public abstract class Escalonador {
     LinkedList<BCP> listaBloqueado;
     LinkedList<BCP> listaAptos;
-    boolean terminou;
+    LinkedList<BCP> listaProcessos;
+    
+    public Escalonador(){
+        this.listaAptos = new LinkedList<>();
+        this.listaBloqueado = new LinkedList<>();
+        this.listaProcessos = TabelaDeProcessos.getInstance().getTabelaDeProcesso();
+    }
     
     abstract public BCP escalonar();
     
     abstract public void ordenar();
+    abstract public void decrementarProcessos(int ciclo);
+    abstract public void retornarProcessosAptos(int ciclo);
+
+    public LinkedList<BCP> getListaBloqueado() {
+        return listaBloqueado;
+    }
+    
+    abstract public int returnIndexProcessoNaLista(int id);
+
+    public void setListaBloqueado(LinkedList<BCP> listaBloqueado) {
+        this.listaBloqueado = listaBloqueado;
+    }
+
+    public LinkedList<BCP> getListaAptos() {
+        return listaAptos;
+    }
+
+    public void setListaAptos(LinkedList<BCP> listaAptos) {
+        this.listaAptos = listaAptos;
+    }
+
+    public LinkedList<BCP> getListaProcessos() {
+        return listaProcessos;
+    }
+
+    public void setListaProcessos(LinkedList<BCP> listaProcessos) {
+        this.listaProcessos = listaProcessos;
+    }
+    
+    public void removeById(int id, LinkedList<BCP> listaParaRemover){
+        for (int i = 0; i < listaParaRemover.size(); i++){
+            if (id == listaParaRemover.get(i).getId())
+                listaParaRemover.remove(i);
+        }
+    }
     
 }

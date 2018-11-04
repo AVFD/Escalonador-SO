@@ -70,10 +70,19 @@ public class BCP {
     }
     
     public void printProcesso(){
-        System.out.println("ID: " + this.getId());
-        System.out.println("Tamanho: " + this.getTempoTotal());
+        System.out.print("ID: " + this.getId()+" ");
+        //System.out.println("Tamanho: " + this.getTempoTotal());
         //System.out.println("Prioridade: " + this.getPrioridade());
         //System.out.println("TempoChegada: " + this.getTempoChegada());
+    }
+    
+    public void copiaProcesso(BCP processo){
+        this.id = processo.id;
+        this.estado = processo.estado;
+        this.listaIO = processo.listaIO;
+        this.prioridade = processo.prioridade;
+        this.tempoChegada = processo.tempoChegada;
+        this.tempoTotal = processo.tempoTotal;
     }
     
 }
