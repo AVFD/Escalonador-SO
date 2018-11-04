@@ -21,7 +21,13 @@ public class Projeto_SOA {
         
         Sjf sjf = new Sjf();
         sjf.ordenar();
-        sjf.escalonar();
+        //sjf.escalonar();
+        
+        //sjf.ordenaPorTempoChegada();
+        //sjf.arrumarListaOrdenadaDosProcessos();
+        
+        //sjf.escalonador();
+        
         
         for (BCP p : sjf.getListaProcessos()){
             p.printProcesso();
