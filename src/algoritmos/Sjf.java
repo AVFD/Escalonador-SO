@@ -26,7 +26,8 @@ public class Sjf extends cpu.Escalonador{
     }
     
     @Override
-    public void escalonar(){
+    public BCP escalonar(){
+        BCP processoRetornar = new BCP();
         int tamanhoLista = listaProcessos.size();
         LinkedList<BCP> listaAuxiliar = new LinkedList<>();
         
@@ -40,7 +41,7 @@ public class Sjf extends cpu.Escalonador{
         }
         
         this.listaProcessos = (LinkedList<BCP>) listaAuxiliar.clone();
-        
+        return processoRetornar;
     }
     
     @Override

@@ -15,7 +15,9 @@ import processo.BCP;
 public abstract class Escalonador {
     LinkedList<BCP> listaBloqueado;
     LinkedList<BCP> listaAptos;
-    abstract public void escalonar();
+    boolean terminou;
+    
+    abstract public BCP escalonar();
     
     abstract public void ordenar();
     

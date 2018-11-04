@@ -22,7 +22,7 @@ public class RoundRobin extends cpu.Escalonador{
     }
 
     @Override
-    public void escalonar() {
+    public BCP escalonar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

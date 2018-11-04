@@ -23,7 +23,11 @@ public class Processador {
     public void processar() {
         int size = listaAlg.size();
         for (int i = 0; i < size; i++) {
-            
+            Escalonador atual = listaAlg.get(i);
+            while(!atual.terminou){
+                atual.escalonar();
+                
+            }
             
         }
     }
