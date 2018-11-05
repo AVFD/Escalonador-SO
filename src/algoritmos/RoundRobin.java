@@ -6,24 +6,21 @@
 package algoritmos;
 
 import cpu.Processador;
-import java.util.LinkedList;
 import processo.BCP;
-import processo.TabelaDeProcessos;
 
 /**
  *
  * @author augusto
  */
-public class RoundRobin extends cpu.Escalonador{
+public class RoundRobin extends cpu.Escalonador {
 
-    public RoundRobin(){
+    public RoundRobin() {
         super();
     }
 
     @Override
     public BCP escalonar() {
         BCP bcp = new BCP();
-        int menorTempo;
 
         retornarProcessosAptos(Processador.ciclo);
 
@@ -31,21 +28,11 @@ public class RoundRobin extends cpu.Escalonador{
             return null;
         }
 
-        menorTempo = this.getListaAptos().get(0).getTempoChegada();
-        bcp.copiaProcesso(this.getListaAptos().get(0));
-        for (BCP p : this.getListaAptos()) {
-            for (BCP p1 : this.getListaAptos()) {
-
-                if (menorTempo > p1.getTempoChegada()) {
-                    menorTempo = p1.getTempoChegada();
-                    bcp.copiaProcesso(p1);
-
-                }
-            }
-        }
+        bcp = this.getListaAptos().remove(0);
+        this.getListaAptos().add(bcp);
         return bcp;
     }
-
+    
     @Override
     public void retornarProcessosAptos(int ciclo) {
         for (BCP p : this.getListaProcessos()) {
@@ -64,7 +51,7 @@ public class RoundRobin extends cpu.Escalonador{
         }
         return -1;
     }
-    
+
     private boolean processoJaApto(int indiceProcesso) {
         boolean tem = false;
         for (BCP p : this.getListaAptos()) {

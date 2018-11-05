@@ -34,7 +34,6 @@ public class LerArquivo {
                 BCP novoProcesso = new BCP();
                 
                 System.out.println("--> " + line);
-
                 parts = line.split(" ");
                 novoProcesso.setId(Integer.valueOf(parts[0]));
                 novoProcesso.setTempoTotal(Integer.valueOf(parts[1]));

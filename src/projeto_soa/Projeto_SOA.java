@@ -35,8 +35,10 @@ public class Projeto_SOA {
         Processador p = new Processador(listaAlg);
 
         p.processar();
-
+        int i = 0;
         for (LinkedList<BCP> lk : p.getOrdemExecutados()) {
+            System.out.println(p.getListaAlg().get(i).getClass().getName());
+            i++;
             for (BCP processo : lk) {
                 processo.printProcesso();
             }

@@ -70,7 +70,7 @@ public class BCP {
     }
     
     public void printProcesso(){
-        System.out.print("ID: " + this.getId()+" ");
+        System.out.print("P" + this.getId()+" ");
         //System.out.println("Tamanho: " + this.getTempoTotal());
         //System.out.println("Prioridade: " + this.getPrioridade());
         //System.out.println("TempoChegada: " + this.getTempoChegada());
