@@ -45,6 +45,7 @@ public class LerArquivo {
                 }
                 tabelaDeProcessos.getTabelaDeProcesso().add(novoProcesso);
             }
+            System.out.println("---------");
 
         } catch (FileNotFoundException ex) {
             System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);

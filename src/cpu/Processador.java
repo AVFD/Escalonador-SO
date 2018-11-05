@@ -5,6 +5,7 @@
  */
 package cpu;
 
+import algoritmos.RoundRobin;
 import java.util.LinkedList;
 import processo.BCP;
 
@@ -27,6 +28,12 @@ public class Processador {
     public void processar() {
         int size = listaAlg.size();
         for (int i = 0; i < size; i++) {
+            if (listaAlg.get(i).getClass() == algoritmos.RoundRobin.class){
+                this.quantum = 4;
+            }
+            else {
+                this.quantum = 1;
+            }
             Escalonador atual = listaAlg.get(i);
             LinkedList<BCP> listaAtualExecutados = new LinkedList<>();
             do {
@@ -43,6 +50,11 @@ public class Processador {
                     if (p.getTempoTotal() <= 0) {
                         atual.removeById(p.getId(), atual.getListaProcessos());
                         atual.removeById(p.getId(), atual.getListaAptos());
+                    }
+                    
+                    if (listaAlg.get(i).getClass() == algoritmos.RoundRobin.class){
+                        BCP pTemp = listaAtualExecutados.removeFirst();
+                        listaAtualExecutados.addLast(pTemp);
                     }
 
                 } else {

@@ -6,6 +6,7 @@
 package projeto_soa;
 
 import algoritmos.Prioridade;
+import algoritmos.RoundRobin;
 import algoritmos.Sjf;
 import cpu.Escalonador;
 import cpu.Processador;
@@ -25,10 +26,12 @@ public class Projeto_SOA {
 
         Escalonador sjf = new Sjf();
         Escalonador pri =  new Prioridade();
+        Escalonador roundRobin = new RoundRobin();
         LinkedList<Escalonador> listaAlg = new LinkedList<>();
 
         listaAlg.add(sjf);
         listaAlg.add(pri);
+        listaAlg.add(roundRobin);
         Processador p = new Processador(listaAlg);
 
         p.processar();
