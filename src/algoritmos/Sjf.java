@@ -14,6 +14,9 @@ import processo.BCP;
  */
 public class Sjf extends cpu.Escalonador {
 
+    public Sjf(){
+        super();
+    }
     @Override
     public BCP escalonar() {
         BCP bcp = new BCP();

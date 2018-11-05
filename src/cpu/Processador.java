@@ -50,6 +50,7 @@ public class Processador {
                 }
             } while (!atual.getListaProcessos().isEmpty());
             ordemExecutados.add(listaAtualExecutados);
+            Processador.ciclo = 0;
         }
     }
 

@@ -20,7 +20,7 @@ import processo.TabelaDeProcessos;
  */
 public class LerArquivo {
 
-    private final String file1 = "/home/augusto/Documents/SO/escalonador/Escalonador-SO/testeSrj.txt";
+    private final String file1 = "algoritmo1.txt";
 
     public TabelaDeProcessos lerArquivo() {
         TabelaDeProcessos tabelaDeProcessos = new TabelaDeProcessos();

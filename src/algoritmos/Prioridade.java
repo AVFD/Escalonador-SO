@@ -13,7 +13,9 @@ import processo.BCP;
  * @author augusto
  */
 public class Prioridade extends cpu.Escalonador {
-
+    public Prioridade(){
+        super();
+    }
     @Override
     public BCP escalonar() {
         BCP bcp = new BCP();

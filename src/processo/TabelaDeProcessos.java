@@ -22,9 +22,7 @@ public class TabelaDeProcessos {
     }
 
     public static TabelaDeProcessos getInstance() {
-        if (tp == null) {
-            tp = new LerArquivo().lerArquivo();
-        }
+        tp = new LerArquivo().lerArquivo();
         return tp;
     }
 

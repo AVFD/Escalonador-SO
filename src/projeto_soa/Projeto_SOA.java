@@ -5,6 +5,7 @@
  */
 package projeto_soa;
 
+import algoritmos.Prioridade;
 import algoritmos.Sjf;
 import cpu.Escalonador;
 import cpu.Processador;
@@ -22,12 +23,12 @@ public class Projeto_SOA {
      */
     public static void main(String[] args) {
 
-        Sjf sjf = new Sjf();
-
+        Escalonador sjf = new Sjf();
+        Escalonador pri =  new Prioridade();
         LinkedList<Escalonador> listaAlg = new LinkedList<>();
 
         listaAlg.add(sjf);
-
+        listaAlg.add(pri);
         Processador p = new Processador(listaAlg);
 
         p.processar();
@@ -35,8 +36,8 @@ public class Projeto_SOA {
         for (LinkedList<BCP> lk : p.getOrdemExecutados()) {
             for (BCP processo : lk) {
                 processo.printProcesso();
-                //System.out.println("-------");
             }
+                System.out.println("\n-------");
         }
 
     }
