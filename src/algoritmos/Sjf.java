@@ -19,8 +19,6 @@ public class Sjf extends cpu.Escalonador {
     }
     @Override
     public BCP escalonar() {
-        BCP bcp = new BCP();
-        int menorTempo;
 
         retornarProcessosAptos(Processador.ciclo);
 
@@ -28,17 +26,11 @@ public class Sjf extends cpu.Escalonador {
             return null;
         }
 
-        menorTempo = this.getListaAptos().get(0).getTempoTotal();
-        bcp.copiaProcesso(this.getListaAptos().get(0));
+        BCP bcp = this.getListaAptos().get(0);
         for (BCP p : this.getListaAptos()) {
-            for (BCP p1 : this.getListaAptos()) {
-
-                if (menorTempo > p1.getTempoTotal()) {
-                    menorTempo = p1.getTempoTotal();
-                    bcp.copiaProcesso(p1);
-
+            if (bcp.getTempoTotal() > p.getTempoTotal()) {
+                bcp = p;
                 }
-            }
         }
         return bcp;
     }
