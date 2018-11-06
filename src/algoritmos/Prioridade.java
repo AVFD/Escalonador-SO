@@ -42,15 +42,7 @@ public class Prioridade extends cpu.Escalonador {
         }
     }
 
-    @Override
-    public int returnIndexProcessoNaLista(int id) {
-        for (BCP p : this.getListaProcessos()) {
-            if (p.getId() == id) {
-                return getListaProcessos().indexOf(p);
-            }
-        }
-        return -1;
-    }
+  
     
     private boolean processoJaApto(int indiceProcesso) {
         boolean tem = false;

@@ -5,6 +5,7 @@
  */
 package processo;
 
+import cpu.Processador;
 import java.util.LinkedList;
 
 /**
@@ -17,6 +18,8 @@ public class BCP {
     private String estado;
     private int tempoChegada;
     private int tempoTotal;
+    public int tempoIO = Processador.cicloIO;
+    public boolean isBlocked = false;
     private LinkedList<Integer> listaIO;
     public BCP(){
         this.listaIO = new LinkedList<>();
@@ -45,7 +48,17 @@ public class BCP {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    public boolean needBlock(int ciclo){
+        for(int i = 0; i < listaIO.size(); i++){
+            if(tempoTotal > 0 && listaIO.get(i) <= ciclo){
+                listaIO.remove(i);
+                isBlocked = true;
+                return true;
+            }
+        }
+        return false;
+    }
     public int getTempoChegada() {
         return tempoChegada;
     }

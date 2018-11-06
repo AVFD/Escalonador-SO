@@ -29,14 +29,21 @@ public abstract class Escalonador {
 
     abstract public void retornarProcessosAptos(int ciclo);
 
-    abstract public int returnIndexProcessoNaLista(int id);
-
     public LinkedList<BCP> getListaBloqueado() {
         return listaBloqueado;
     }
 
     public void setListaBloqueado(LinkedList<BCP> listaBloqueado) {
         this.listaBloqueado = listaBloqueado;
+    }
+
+    public int returnIndexProcessoNaLista(int id, LinkedList<BCP> lista) {
+        for (BCP p : lista) {
+            if (p.getId() == id) {
+                return lista.indexOf(p);
+            }
+        }
+        return -1;
     }
 
     public LinkedList<BCP> getListaAptos() {

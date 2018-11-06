@@ -14,6 +14,8 @@ import processo.BCP;
  */
 public class Processador {
 
+    public static int cicloIO = 2;
+
     private LinkedList<Escalonador> listaAlg;
     private LinkedList<LinkedList<BCP>> ordemExecutados;
     public static int ciclo = 0;
@@ -31,26 +33,47 @@ public class Processador {
             LinkedList<BCP> listaAtualExecutados = new LinkedList<>();
             do {
                 BCP p = atual.escalonar();
+                int tempoExecutado;
                 if (p != null) {
-                    int indexP = atual.returnIndexProcessoNaLista(p.getId());
                     listaAtualExecutados.add(p);
                     if ((p.getTempoTotal() - quantum) < 0) {
+                        tempoExecutado = p.getTempoTotal();
                         ciclo += p.getTempoTotal();
                     } else {
+                        tempoExecutado = quantum;
                         ciclo += quantum;
                     }
-                    atual.getListaProcessos().get(indexP).setTempoTotal(p.getTempoTotal() - quantum);
-                    if (atual.getListaProcessos().get(indexP).getTempoTotal() <= 0) {
-                        atual.removeById(p.getId(), atual.getListaProcessos());
-                        atual.removeById(p.getId(), atual.getListaAptos());
+                    p.setTempoTotal(p.getTempoTotal() - quantum);
+
+                    if (p.getTempoTotal() <= 0) {
+                        atual.getListaProcessos().remove(p);
+                        atual.getListaAptos().remove(p);
                     }
 
                 } else {
+                    tempoExecutado = 1;
                     ciclo++;
+                }
+                decrementarBloqueados(atual, tempoExecutado);
+                if (p != null && p.needBlock(ciclo)) {
+                    int indexP = atual.returnIndexProcessoNaLista(p.getId(), atual.getListaAptos());
+                    atual.listaBloqueado.add(atual.listaAptos.remove(indexP));
                 }
             } while (!atual.getListaProcessos().isEmpty());
             ordemExecutados.add(listaAtualExecutados);
             Processador.ciclo = 0;
+        }
+    }
+
+    private void decrementarBloqueados(Escalonador es, int tempoExecutado) {
+        for (BCP p : es.getListaBloqueado()) {
+            p.tempoIO -= tempoExecutado;
+            if (p.tempoIO <= 0) {
+                p.tempoIO = Processador.cicloIO;
+                p.isBlocked = false;
+                int indexP = es.returnIndexProcessoNaLista(p.getId(), es.listaBloqueado);
+                es.listaAptos.add(es.listaBloqueado.remove(indexP));
+            }
         }
     }
 

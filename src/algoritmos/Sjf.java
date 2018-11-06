@@ -14,9 +14,10 @@ import processo.BCP;
  */
 public class Sjf extends cpu.Escalonador {
 
-    public Sjf(){
+    public Sjf() {
         super();
     }
+
     @Override
     public BCP escalonar() {
 
@@ -30,31 +31,23 @@ public class Sjf extends cpu.Escalonador {
         for (BCP p : this.getListaAptos()) {
             if (bcp.getTempoTotal() > p.getTempoTotal()) {
                 bcp = p;
-                }
+            }
         }
         return bcp;
     }
-
+    
+    
     @Override
     public void retornarProcessosAptos(int ciclo) {
 
         for (BCP p : this.getListaProcessos()) {
-            if (p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
+            if (!p.isBlocked && p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
                 this.getListaAptos().add(p);
             }
         }
 
     }
 
-    @Override
-    public int returnIndexProcessoNaLista(int id) {
-        for (BCP p : this.getListaProcessos()) {
-            if (p.getId() == id) {
-                return getListaProcessos().indexOf(p);
-            }
-        }
-        return -1;
-    }
 
     private boolean processoJaApto(int indiceProcesso) {
         boolean tem = false;
