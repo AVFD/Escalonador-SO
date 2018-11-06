@@ -32,24 +32,5 @@ public class RoundRobin extends cpu.Escalonador {
         this.getListaAptos().add(bcp);
         return bcp;
     }
-    
-    @Override
-    public void retornarProcessosAptos(int ciclo) {
-        for (BCP p : this.getListaProcessos()) {
-            if (p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
-                this.getListaAptos().add(p);
-            }
-        }
-    }
 
-
-    private boolean processoJaApto(int indiceProcesso) {
-        boolean tem = false;
-        for (BCP p : this.getListaAptos()) {
-            if (p.getId() == indiceProcesso) {
-                tem = true;
-            }
-        }
-        return tem;
-    }
 }

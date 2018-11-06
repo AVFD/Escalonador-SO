@@ -27,8 +27,6 @@ public abstract class Escalonador {
 
     abstract public BCP escalonar();
 
-    abstract public void retornarProcessosAptos(int ciclo);
-
     public LinkedList<BCP> getListaBloqueado() {
         return listaBloqueado;
     }
@@ -44,6 +42,27 @@ public abstract class Escalonador {
             }
         }
         return -1;
+    }
+    
+    public void retornarProcessosAptos(int ciclo) {
+
+        for (BCP p : this.listaProcessos) {
+            if (!p.isBlocked && p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
+                this.listaAptos.add(p);
+            }
+        }
+
+    }
+
+
+    public boolean processoJaApto(int indiceProcesso) {
+        boolean tem = false;
+        for (BCP p : this.listaAptos) {
+            if (p.getId() == indiceProcesso) {
+                tem = true;
+            }
+        }
+        return tem;
     }
 
     public LinkedList<BCP> getListaAptos() {

@@ -25,13 +25,13 @@ public class Projeto_SOA {
     public static void main(String[] args) {
 
         Escalonador sjf = new Sjf();
-//        Escalonador pri =  new Prioridade();
-//        Escalonador roundRobin = new RoundRobin();
+        Escalonador pri =  new Prioridade();
+        Escalonador roundRobin = new RoundRobin();
         LinkedList<Escalonador> listaAlg = new LinkedList<>();
 
         listaAlg.add(sjf);
-//        listaAlg.add(pri);
-//        listaAlg.add(roundRobin);
+        listaAlg.add(pri);
+        listaAlg.add(roundRobin);
         Processador p = new Processador(listaAlg);
 
         p.processar();

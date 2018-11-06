@@ -37,25 +37,5 @@ public class Sjf extends cpu.Escalonador {
     }
     
     
-    @Override
-    public void retornarProcessosAptos(int ciclo) {
-
-        for (BCP p : this.getListaProcessos()) {
-            if (!p.isBlocked && p.getTempoChegada() <= ciclo && !(processoJaApto(p.getId()))) {
-                this.getListaAptos().add(p);
-            }
-        }
-
-    }
-
-
-    private boolean processoJaApto(int indiceProcesso) {
-        boolean tem = false;
-        for (BCP p : this.getListaAptos()) {
-            if (p.getId() == indiceProcesso) {
-                tem = true;
-            }
-        }
-        return tem;
-    }
+    
 }
