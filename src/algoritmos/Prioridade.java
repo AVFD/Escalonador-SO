@@ -18,26 +18,17 @@ public class Prioridade extends cpu.Escalonador {
     }
     @Override
     public BCP escalonar() {
-        BCP bcp = new BCP();
-        int menorTempo;
-
         retornarProcessosAptos(Processador.ciclo);
 
         if (this.getListaAptos().isEmpty()) {
             return null;
         }
 
-        menorTempo = this.getListaAptos().get(0).getPrioridade();
-        bcp.copiaProcesso(this.getListaAptos().get(0));
+        BCP bcp = this.getListaAptos().get(0);
         for (BCP p : this.getListaAptos()) {
-            for (BCP p1 : this.getListaAptos()) {
-
-                if (menorTempo > p1.getPrioridade()) {
-                    menorTempo = p1.getPrioridade();
-                    bcp.copiaProcesso(p1);
-
+                if (bcp.getPrioridade() > p.getPrioridade()) {
+                    bcp = p;
                 }
-            }
         }
         return bcp;
     }
