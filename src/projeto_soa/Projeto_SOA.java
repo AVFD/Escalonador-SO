@@ -37,11 +37,13 @@ public class Projeto_SOA {
         int i = 0;
         for (LinkedList<BCP> lk : p.getOrdemExecutados()) {
             System.out.println(p.getListaAlg().get(i).getClass().getName());
-            i++;
             for (BCP processo : lk) {
                 processo.printProcesso();
             }
+            System.out.println("\nTamanho MAX fila Aptos: " + p.getListaAlg().get(i).getTamanhoMaxFilaAptos());
+            System.out.println("Tamanho MAX fila Bloqueados: " + p.getListaAlg().get(i).getTamanhoMaxFilaBlock());
             System.out.println("\n-------");
+            i++;
         }
 
     }

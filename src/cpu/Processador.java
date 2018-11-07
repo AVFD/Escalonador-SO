@@ -56,6 +56,8 @@ public class Processador {
                     int indexP = atual.returnIndexProcessoNaLista(p.getId(), atual.getListaAptos());
                     atual.listaBloqueado.add(atual.listaAptos.remove(indexP));
                 }
+                atual.tamanhoMaxAptos();
+                atual.tamanhoMaxBloq();
             } while (!atual.getListaProcessos().isEmpty());
             ordemExecutados.add(listaAtualExecutados);
             Processador.ciclo = 0;

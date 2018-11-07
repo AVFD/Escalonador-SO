@@ -9,6 +9,8 @@ public abstract class Escalonador {
     LinkedList<BCP> listaBloqueado;
     LinkedList<BCP> listaAptos;
     LinkedList<BCP> listaProcessos;
+    int tamanhoMaxFilaAptos;
+    int tamanhoMaxFilaBlock;
 
     public Escalonador() {
         this.listaAptos = new LinkedList<>();
@@ -82,5 +84,33 @@ public abstract class Escalonador {
             }
         }
     }
+    
+    public void tamanhoMaxAptos(){
+        if (this.tamanhoMaxFilaAptos < this.listaAptos.size()){
+            this.tamanhoMaxFilaAptos = this.listaAptos.size();
+        }
+    }
+    
+    public void tamanhoMaxBloq(){
+        if (this.tamanhoMaxFilaBlock < this.listaBloqueado.size()){
+            this.tamanhoMaxFilaBlock = this.listaBloqueado.size();
+        }
+    }
 
+    public int getTamanhoMaxFilaAptos() {
+        return tamanhoMaxFilaAptos;
+    }
+
+    public void setTamanhoMaxFilaAptos(int tamanhoMaxFilaAptos) {
+        this.tamanhoMaxFilaAptos = tamanhoMaxFilaAptos;
+    }
+
+    public int getTamanhoMaxFilaBlock() {
+        return tamanhoMaxFilaBlock;
+    }
+
+    public void setTamanhoMaxFilaBlock(int tamanhoMaxFilaBlock) {
+        this.tamanhoMaxFilaBlock = tamanhoMaxFilaBlock;
+    }
+    
 }
