@@ -35,6 +35,7 @@ public abstract class Escalonador {
         this.listaBloqueado = listaBloqueado;
     }
 
+    // Retornamos o Indice de um processo em alguma lista, baseado no ID do processo.
     public int returnIndexProcessoNaLista(int id, LinkedList<BCP> lista) {
         for (BCP p : lista) {
             if (p.getId() == id) {
@@ -44,6 +45,7 @@ public abstract class Escalonador {
         return -1;
     }
     
+    // Monta a lista de processo aptos.
     public void retornarProcessosAptos(int ciclo) {
 
         for (BCP p : this.listaProcessos) {
@@ -54,7 +56,7 @@ public abstract class Escalonador {
 
     }
 
-
+    // Retorna se um processo está ou não na lista de processos aptos.
     public boolean processoJaApto(int indiceProcesso) {
         boolean tem = false;
         for (BCP p : this.listaAptos) {
@@ -81,6 +83,7 @@ public abstract class Escalonador {
         this.listaProcessos = listaProcessos;
     }
 
+    // Remove um processo de uma lista de processos baseado no ID.
     public void removeById(int id, LinkedList<BCP> listaParaRemover) {
         for (int i = 0; i < listaParaRemover.size(); i++) {
             if (id == listaParaRemover.get(i).getId()) {

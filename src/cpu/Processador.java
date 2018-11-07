@@ -28,12 +28,16 @@ public class Processador {
 
     public void processar() {
         int size = listaAlg.size();
+        //For para rodar em toda a lista de algoritmos que foram inseridos.
         for (int i = 0; i < size; i++) {
             Escalonador atual = listaAlg.get(i);
             LinkedList<BCP> listaAtualExecutados = new LinkedList<>();
+            //Executar o laço DO_WHILE até que os processos tenham sido encerrados.
             do {
+                //Aqui o escalonamento de cada algoritmo é chamado, e então retorna o processo escalonado.
                 BCP p = atual.escalonar();
                 int tempoExecutado;
+                //Quando se retorna um Processo para ser escalonado.
                 if (p != null) {
                     listaAtualExecutados.add(p);
                     if ((p.getTempoTotal() - quantum) < 0) {
@@ -50,11 +54,13 @@ public class Processador {
                         atual.getListaAptos().remove(p);
                     }
 
-                } else {
+                } else /* Caso nenhum processo tenha sido escalonado */{
                     tempoExecutado = 1;
                     ciclo++;
                 }
+                // Realizar decremento na lista de processo bloqueados.
                 decrementarBloqueados(atual, tempoExecutado);
+                // Caso o processo tenha que ser bloqueado.
                 if (p != null && p.needBlock(ciclo)) {
                     int indexP = atual.returnIndexProcessoNaLista(p.getId(), atual.getListaAptos());
                     atual.listaBloqueado.add(atual.listaAptos.remove(indexP));
@@ -65,6 +71,7 @@ public class Processador {
         }
     }
 
+    // Esta função compara se os processos que estão bloqueados podem voltar para a lista de aptos.
     private void decrementarBloqueados(Escalonador es, int tempoExecutado) {
         for (BCP p : es.getListaBloqueado()) {
             p.tempoIO -= tempoExecutado;

@@ -39,6 +39,7 @@ public class LerArquivo {
                 novoProcesso.setTempoTotal(Integer.valueOf(parts[1]));
                 novoProcesso.setPrioridade(Integer.valueOf(parts[2]));
                 novoProcesso.setTempoChegada(Integer.valueOf(parts[3]));
+                // Este for executa caso o processo tenha uma lista de IO.
                 for (int i = 4; i < parts.length; i++) {
                     novoProcesso.getListaIO().add(Integer.valueOf(parts[i]));
                 }
@@ -47,7 +48,7 @@ public class LerArquivo {
             System.out.println("---------");
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Na classa LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
+            System.out.println("Na classe LerAlgoritmos, não foi encontrado o arquivo com esse nome: " + file1);
             Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(LerArquivo.class.getName()).log(Level.SEVERE, null, ex);
