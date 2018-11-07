@@ -5,7 +5,7 @@ Simula três algoritmos (Short Job First - SJF, Priority, RoundRobin - RR) para 
 * Necessário java 7 ou posteriores.
 * Passar por parâmetro (argumento) o nome do arquivo que contém as informações dos processos.
   * O arquivo deve seguir o seguinte padrão:
-    * Cada processo será uma linha e atributos são separados por vírgula.
+    * Cada processo será uma linha e atributos são separados por espaço.
     * Todos os atributos são números
     * 1º atributo: ID do processo
     * 2º atributo: Tempo total que o processo necessita para executar.
