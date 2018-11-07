@@ -30,5 +30,7 @@ Simula três algoritmos (Short Job First - SJF, Priority, RoundRobin - RR) para 
 
 #### Autores
 Trabalho para disciplina de Sistemas Operacionais desenvolvido por:
+
 Augusto Vicente Fernandes Dias
+
 Guilherme Ianhez Pereira dos Santos
