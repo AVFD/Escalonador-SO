@@ -2,6 +2,7 @@ package processo;
 
 import cpu.Processador;
 import java.util.LinkedList;
+import leituraArquivo.LerArquivo;
 
 public class BCP {
     private int id;
@@ -9,7 +10,8 @@ public class BCP {
     private String estado;
     private int tempoChegada;
     private int tempoTotal;
-    public int tempoEsperaTotal = 0;
+    private int tempoEsperaMedio = 0;
+    private int tempoEsperaTotal = 0;
     public int tempoIO = Processador.cicloIO;
     public boolean isBlocked = false;
     private LinkedList<Integer> listaIO;
@@ -19,6 +21,23 @@ public class BCP {
 
     public int getId() {
         return id;
+    }
+
+    public int getTempoEsperaMedio() {
+        return tempoEsperaMedio;
+    }
+
+    public void setTempoEsperaMedio(int tempoEsperaMedio) {
+        this.tempoEsperaMedio = tempoEsperaMedio;
+    }
+
+    public int getTempoEsperaTotal() {
+        return tempoEsperaTotal;
+    }
+
+    public void setTempoEsperaTotal(int tempoEsperaTotal) {
+        this.tempoEsperaTotal = tempoEsperaTotal;
+        this.tempoEsperaMedio = tempoEsperaTotal / LerArquivo.quantProcessos;
     }
 
     public void setId(int id) {

@@ -12,6 +12,7 @@ import processo.TabelaDeProcessos;
 public class LerArquivo {
 
     public static String file1;
+    public static int quantProcessos = 0;
 
     public TabelaDeProcessos lerArquivo() {
         TabelaDeProcessos tabelaDeProcessos = new TabelaDeProcessos();
@@ -23,7 +24,7 @@ public class LerArquivo {
 
             while ((line = lerArq.readLine()) != null) {
                 BCP novoProcesso = new BCP();
-                
+                quantProcessos++;
                 System.out.println("--> " + line);
                 parts = line.split(" ");
                 novoProcesso.setId(Integer.valueOf(parts[0]));

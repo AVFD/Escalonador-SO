@@ -41,6 +41,7 @@ public class Processador {
                     p.setTempoTotal(p.getTempoTotal() - quantum);
 
                     if (p.getTempoTotal() <= 0) {
+                        atual.getListaFinalizados().add(p);
                         atual.getListaProcessos().remove(p);
                         atual.getListaAptos().remove(p);
                     }
@@ -69,8 +70,8 @@ public class Processador {
 
     private void incrementListaEspera(Escalonador es, BCP bcp, int tempoExecutado) {
         for (BCP p : es.listaProcessos) {
-            if (p != null && p.getId() != bcp.getId()) {
-                p.tempoEsperaTotal += tempoExecutado;
+            if (bcp != null && p.getId() != bcp.getId()) {
+                p.setTempoEsperaTotal(p.getTempoEsperaTotal() + tempoExecutado);
             }
         }
     }

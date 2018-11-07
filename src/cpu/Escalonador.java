@@ -9,12 +9,14 @@ public abstract class Escalonador {
     LinkedList<BCP> listaBloqueado;
     LinkedList<BCP> listaAptos;
     LinkedList<BCP> listaProcessos;
+    LinkedList<BCP> listaFinalizados;
     int tamanhoMaxFilaAptos;
     int tamanhoMaxFilaBlock;
 
     public Escalonador() {
         this.listaAptos = new LinkedList<>();
         this.listaBloqueado = new LinkedList<>();
+        this.listaFinalizados = new LinkedList<>();
         this.listaProcessos = TabelaDeProcessos.getInstance().getTabelaDeProcesso();
     }
 
@@ -22,6 +24,14 @@ public abstract class Escalonador {
 
     public LinkedList<BCP> getListaBloqueado() {
         return listaBloqueado;
+    }
+
+    public LinkedList<BCP> getListaFinalizados() {
+        return listaFinalizados;
+    }
+
+    public void setListaFinalizados(LinkedList<BCP> listaFinalizados) {
+        this.listaFinalizados = listaFinalizados;
     }
 
     public void setListaBloqueado(LinkedList<BCP> listaBloqueado) {

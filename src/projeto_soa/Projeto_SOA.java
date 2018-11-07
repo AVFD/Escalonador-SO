@@ -39,9 +39,15 @@ public class Projeto_SOA {
             System.out.println(p.getListaAlg().get(i).getClass().getName());
             for (BCP processo : lk) {
                 processo.printProcesso();
+
             }
             System.out.println("\nTamanho MAX fila Aptos: " + p.getListaAlg().get(i).getTamanhoMaxFilaAptos());
             System.out.println("Tamanho MAX fila Bloqueados: " + p.getListaAlg().get(i).getTamanhoMaxFilaBlock());
+            for (BCP p2 : p.getListaAlg().get(i).getListaFinalizados()) {
+                System.out.println("P" + p2.getId());
+                System.out.println("Tempo de espera Médio: " + p2.getTempoEsperaMedio());
+                System.out.println("Tempo de espera Total: " + p2.getTempoEsperaTotal());
+            }
             System.out.println("\n-------");
             i++;
         }
