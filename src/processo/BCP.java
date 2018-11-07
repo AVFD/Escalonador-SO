@@ -9,6 +9,7 @@ public class BCP {
     private int prioridade;
     private String estado;
     private int tempoChegada;
+    public boolean jaExecutou = false;
     private int tempoTotal;
     private int tempoEsperaMedio = 0;
     private int tempoEsperaTotal = 0;

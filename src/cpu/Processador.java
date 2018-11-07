@@ -31,6 +31,7 @@ public class Processador {
                 //Quando se retorna um Processo para ser escalonado.
                 if (p != null) {
                     listaAtualExecutados.add(p);
+                    p.jaExecutou = true;
                     if ((p.getTempoTotal() - quantum) < 0) {
                         tempoExecutado = p.getTempoTotal();
                         ciclo += p.getTempoTotal();
@@ -70,7 +71,7 @@ public class Processador {
 
     private void incrementListaEspera(Escalonador es, BCP bcp, int tempoExecutado) {
         for (BCP p : es.listaProcessos) {
-            if (bcp != null && p.getId() != bcp.getId()) {
+            if (bcp != null && p.getId() != bcp.getId() && p.jaExecutou  ) {
                 p.setTempoEsperaTotal(p.getTempoEsperaTotal() + tempoExecutado);
             }
         }
