@@ -45,10 +45,12 @@ public class Processador {
                         atual.getListaAptos().remove(p);
                     }
 
-                } else /* Caso nenhum processo tenha sido escalonado */{
+                } else /* Caso nenhum processo tenha sido escalonado */ {
                     tempoExecutado = 1;
                     ciclo++;
                 }
+                incrementListaEspera(atual, p, tempoExecutado);
+
                 // Realizar decremento na lista de processo bloqueados.
                 decrementarBloqueados(atual, tempoExecutado);
                 // Caso o processo tenha que ser bloqueado.
@@ -58,9 +60,18 @@ public class Processador {
                 }
                 atual.tamanhoMaxAptos();
                 atual.tamanhoMaxBloq();
+
             } while (!atual.getListaProcessos().isEmpty());
             ordemExecutados.add(listaAtualExecutados);
             Processador.ciclo = 0;
+        }
+    }
+
+    private void incrementListaEspera(Escalonador es, BCP bcp, int tempoExecutado) {
+        for (BCP p : es.listaProcessos) {
+            if (p != null && p.getId() != bcp.getId()) {
+                p.tempoEsperaTotal += tempoExecutado;
+            }
         }
     }
 

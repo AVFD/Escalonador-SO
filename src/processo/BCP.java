@@ -9,6 +9,7 @@ public class BCP {
     private String estado;
     private int tempoChegada;
     private int tempoTotal;
+    public int tempoEsperaTotal = 0;
     public int tempoIO = Processador.cicloIO;
     public boolean isBlocked = false;
     private LinkedList<Integer> listaIO;
