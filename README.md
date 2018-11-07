@@ -28,7 +28,7 @@ Simula três algoritmos (Short Job First - SJF, Priority, RoundRobin - RR) para 
 * Quantum do processador = 1
 * Tempo em que um processo realizará IO (bloqueado): 2
 
-#### Autores
+### Autores
 Trabalho para disciplina de Sistemas Operacionais desenvolvido por:
 
 Augusto Vicente Fernandes Dias
