@@ -11,7 +11,7 @@ import processo.TabelaDeProcessos;
 
 public class LerArquivo {
 
-    private final String file1 = "algoritmo1.txt";
+    public static String file1;
 
     public TabelaDeProcessos lerArquivo() {
         TabelaDeProcessos tabelaDeProcessos = new TabelaDeProcessos();
